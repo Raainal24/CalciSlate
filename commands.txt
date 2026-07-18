@@ -1,0 +1,45 @@
+pip install customtkinter pillow ollama google-generativeai
+
+
+ssh -L 11450:localhost:11450 amalnair@202.149.199.26 -p 2224
+
+ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 11450:localhost:11450 amalnair@202.149.199.26 -p 2224
+
+name: Ollama Assistant
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Mistral
+    provider: ollama
+    model: mistral
+    apiBase: http://localhost:11450
+    roles:
+      - chat
+      - edit
+      - autocomplete
+    defaultCompletionOptions:
+      temperature: 0.7
+      
+  - name: Mistral Embeddings
+    provider: ollama
+    model: nomic-embed-text
+    apiBase: http://localhost:11450
+    roles:
+      - embed
+
+prompts:
+  - name: solve-math
+    description: Strict numeric step-by-step only, with clean final answer
+    prompt: |
+      You are a calculator. Solve the following mathematical expression.
+
+      Output format rules (MUST follow):
+      - Show one step per line
+      - Each line must start with `=`
+      - Only use numeric expressions and operators (e.g., `= 2 + 3 = 5`)
+      - Do not include any English explanation, headings, or summaries
+      - The last line must be the numeric final answer in the format `= NUMBER`
+      - Do not include any extra line after the final answer
+
+      On the canvas, display only the numeric result strictly, without `=`, words, or any extra text—just the plain number.
