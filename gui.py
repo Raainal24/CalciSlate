@@ -283,7 +283,7 @@ class AboutPage(ctk.CTkFrame):
                 "description":
                     "Full Stack Developer responsible for backend integration and application architecture.",
                 "linkedin":
-                    "https://www.linkedin.com/in/shib-sobhan-mohanty-53957b252/"
+                    "https://www.linkedin.com/in/shibsobhan-mohanty-53957b252/"
             },
 
             {
