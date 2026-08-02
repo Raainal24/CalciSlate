@@ -1,8 +1,39 @@
-ssh to the server ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
-go to cd /home/amalnair/Coding/Calcisketch_Server
-then put this uvicorn app:app --host 0.0.0.0 --port 8000
+Running the CalciSketch Server
+Step 1: Connect to the Remote Server
 
-then in the local pc 
-go to cmd then ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
-then cd bin
-then OLLAMA_HOST=0.0.0.0:11450 ./ollama-linux-amd64 serve
+Open a terminal and connect to the HPC server using the following command:
+
+ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
+-------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Navigate to the Project Directory
+
+Once connected, move to the CalciSketch server directory:
+
+cd /home/amalnair/Coding/Calcisketch_Server
+-------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Start the FastAPI Backend
+
+Run the following command to start the backend server:
+
+uvicorn app:app --host 0.0.0.0 --port 8000
+
+Leave this terminal running.
+
+Running the Ollama Server
+--------------------------------------------------------------------------------------------------------------------------------------
+Step 1: Open a New Terminal
+
+Open a new terminal on your local machine and connect to the server again using the same SSH command:
+
+ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
+-------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Navigate to the bin Directory
+cd bin
+-------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Start the Ollama Server
+
+Run the following command:
+
+OLLAMA_HOST=0.0.0.0:11450 ./ollama-linux-amd64 serve
+
+Leave this terminal running.
