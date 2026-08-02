@@ -1,0 +1,8 @@
+ssh to the server ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
+go to cd /home/amalnair/Coding/Calcisketch_Server
+then put this uvicorn app:app --host 0.0.0.0 --port 8000
+
+then in the local pc 
+go to cmd then ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -L 8000:localhost:8000 amalnair@202.149.199.26 -p 2224
+then cd bin
+then OLLAMA_HOST=0.0.0.0:11450 ./ollama-linux-amd64 serve
