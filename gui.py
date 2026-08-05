@@ -446,6 +446,10 @@ class DrawingPage(ctk.CTkFrame):
             height=102,
             corner_radius=0
         )
+        # Keep a reference so result widgets can never cover the drawing
+        # controls.  The result box is created after the toolbar, so without
+        # explicitly raising this frame it can sit on top of the buttons.
+        self.toolbar = toolbar
 
         toolbar_background = tk.Label(
             toolbar,
@@ -741,8 +745,10 @@ class DrawingPage(ctk.CTkFrame):
         )
 
         self.solution_box.place(
-            x=85,
-            y=690
+            relx=0.5,
+            rely=0.68,
+            relwidth=0.9,
+            anchor="center",
         )
 
         for step in steps:
@@ -765,6 +771,11 @@ class DrawingPage(ctk.CTkFrame):
         self.solution_box.configure(
             state="disabled"
         )
+
+        # A solution is added after the toolbar and would otherwise be the
+        # topmost widget.  Raise the toolbar so Calculate, Clear, and the
+        # other controls remain clickable for the next calculation.
+        self.toolbar.lift()
 
 
 if __name__ == "__main__":
